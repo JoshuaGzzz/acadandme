@@ -1,3 +1,5 @@
+![alt text](https://github.com/JoshuaGzzz/acadandme/blob/main/logo.png "Logo Title Text 1")
+
 # 📚 Acad&Me — All-In-One Student Productivity & Wellness Hub
 
 Acad&Me is a unified platform designed to help college students manage their academic tasks, wellness routines, and daily responsibilities without switching between multiple apps. It serves as a student’s safe space — combining productivity tools with mental-health-support features in one clean and accessible website.
