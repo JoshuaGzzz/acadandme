@@ -33,7 +33,7 @@ Welcome to Acad&Me—your companion for staying focused, organized, and motivate
 From timers to task trackers and wellness tools, everything here is designed 
 to support your learning journey. We're glad you're here!
 </div>
-<a href="#" class="cta-btn" style="background-color: #FFDB5B; color: black; text-decoration: none; padding: 15px 40px; font-size: 24px; font-weight: 700; border-radius: 8px; display: inline-block; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">Start now</a>
+<a href="calendartodo" class="cta-btn" style="background-color: #FFDB5B; color: black; text-decoration: none; padding: 15px 40px; font-size: 24px; font-weight: 700; border-radius: 8px; display: inline-block; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">Start now</a>
 </div>
 <div class="visual-block" style="flex: 1; display: flex; justify-content: center;">
 <img src="{comp_src}" alt="Computer 3D" style="max-width: 100%; animation: float 6s ease-in-out infinite;">

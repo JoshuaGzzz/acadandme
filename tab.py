@@ -153,9 +153,9 @@ def render_navbar():
         </div>
         <div class="nav-links">
             <span class="nav-item"><a href="mainpage" target="_self">Pomodoro</a></span>
-            <span class="nav-item"><a href="mainpage" target="_self">Calendar</a></span>
+            <span class="nav-item"><a href="calendartodo" target="_self">Calendar</a></span>
             <span class="nav-item"><a href="wellnessvideo" target="_self">Wellness video</a></span>
-            <span class="nav-item"><a href="#" target="_self">Track your mood</a></span>
+            <span class="nav-item"><a href="moodtracker" target="_self">Track your mood</a></span>
             <span class="nav-item"><a href="#" target="_self">About</a></span>
         </div>
     </div>
