@@ -11,9 +11,9 @@ tab.render_top_buttons()
 tab.render_navbar()
 
 # --- PAGE SPECIFIC IMAGES ---
-comp_b64 = tab.get_base64_image("other07.png")
-abstract_b64 = tab.get_base64_image("other12.png")
-folder_b64 = tab.get_base64_image("other18.png")
+comp_b64 = tab.get_base64_image("Other07.png")
+abstract_b64 = tab.get_base64_image("Other12.png")
+folder_b64 = tab.get_base64_image("Other18.png")
 
 comp_src = f"data:image/png;base64,{comp_b64}" if comp_b64 else "https://placehold.co/600x500/png?text=3D+Computer"
 abstract_src = f"data:image/png;base64,{abstract_b64}" if abstract_b64 else "https://placehold.co/435x400/png?text=Abstract+Shapes"
