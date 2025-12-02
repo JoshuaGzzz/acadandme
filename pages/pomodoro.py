@@ -21,7 +21,7 @@ tab.render_navbar()
 
 # --- Constants ---
 W = 25 * 60
-S = 5
+S = 5 * 60
 L = 15 * 60
 CYCLES = 4
 
