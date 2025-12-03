@@ -4,7 +4,6 @@ import sys
 import os
 
 # --- 1. IMPORT FIX ---
-# This tells Python: "Look in the folder above this one to find tab.py"
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import tab 
 
@@ -12,7 +11,6 @@ import tab
 st.set_page_config(layout="wide", page_title="Acad&Me - Wellness")
 
 # --- 3. INJECT LAYOUT ---
-# This pulls the CSS, Theme, and Navbar (with the clickable logo) from tab.py
 tab.render_css()
 tab.render_top_buttons()
 tab.render_navbar()
@@ -42,7 +40,29 @@ st.write("")
 col1, col2, col3 = st.columns([1, 4, 1])
 
 with col2:
-    st.markdown("<h2 style='text-align: center;'>Wellness Corner 🌿</h2>", unsafe_allow_html=True)
+    # --- CSS INJECTION ---
+    st.markdown("""
+        <style>
+        .quote-box {
+            background-color: white;
+            border: 1px solid black;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            color: black;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # --- UPDATED BANNER ---
+    # Replaced the previous text with "Wellness Corner" and applied the .quote-box class
+    st.markdown('<div class="quote-box">Wellness Corner 🌿</div>', unsafe_allow_html=True)
     
     # Video Player
     st.video(st.session_state.last_video)
@@ -52,7 +72,7 @@ with col2:
     # Center the button
     b1, b2, b3 = st.columns([1, 1, 1])
     with b2:
-        if st.button("New Motivation Video 🎥", use_container_width=True):
+        if st.button("Play", use_container_width=True):
             randvid = random.choice(vids)
             # Try not to repeat the same video
             while len(vids) > 1 and randvid == st.session_state.last_video:

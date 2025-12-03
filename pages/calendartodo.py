@@ -125,7 +125,8 @@ if "show_delete" not in st.session_state:
 
 
 # --- 5. MAIN LAYOUT ---
-left_gap, main_col, right_gap = st.columns([1.5, 6, 1.5])
+# CHANGED: Ratios adjusted to make the center column much wider [0.1, 10, 0.1]
+left_gap, main_col, right_gap = st.columns([0.1, 10, 0.1])
 
 with main_col:
     
@@ -133,12 +134,17 @@ with main_col:
 
     # --- Buttons Row ---
     btn_col1, btn_col2 = st.columns(2)
+    
+    # CHANGED: Added logic to force the other variable to False when one is clicked
     with btn_col1:
         if st.button("Add a Task ➕"):
             st.session_state["show_form"] = not st.session_state["show_form"]
+            st.session_state["show_delete"] = False  # Close delete if open
+
     with btn_col2:
         if st.button("Delete a Task ❌"):
             st.session_state["show_delete"] = not st.session_state["show_delete"]
+            st.session_state["show_form"] = False  # Close add if open
 
     # --- Add Event Form ---
     if st.session_state["show_form"]:
@@ -193,6 +199,7 @@ with main_col:
             "right": "dayGridMonth,timeGridWeek,timeGridDay"
         },
         "eventColor": "#3788d8", 
+        "height": "800px" # Optional: Added height to match the new width better
     }
 
     calendar(

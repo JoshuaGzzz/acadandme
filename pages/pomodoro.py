@@ -228,8 +228,7 @@ def pomodoro_app():
         # Progress Bar
         progress = (st.session_state.total_duration - st.session_state.time_remaining) / st.session_state.total_duration
         st.progress(progress)
-        
-        st.write("---")
+    
 
         # --- CONTROLS (Wrapped in a specific container) ---
         st.markdown('<div class="timer-controls">', unsafe_allow_html=True)

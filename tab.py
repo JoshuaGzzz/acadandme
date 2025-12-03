@@ -14,7 +14,7 @@ def get_base64_image(image_path):
 def render_css():
     # Initialize Session State
     if "theme" not in st.session_state:
-        st.session_state["theme"] = "light"
+        st.session_state["theme"] = "dark"  # <--- CHANGED FROM "light" TO "dark"
 
     # Load Background Image
     bg_b64 = get_base64_image("image13.png") 
@@ -25,20 +25,36 @@ def render_css():
         text_color = "#ffffff"
         
         # Button Colors
-        btn_bg = "#2C2C2C"        # Normal: Dark Grey
-        btn_hover = "#444444"     # Hover: Slightly Lighter Grey (NOT transparent)
+        btn_bg = "#2C2C2C"        
+        btn_hover = "#444444"     
         btn_text = "#ffffff"
         
         card_bg = "#D9D9D9"
         
-        app_bg_style = f"""
-            background-color: #87CEEB;
+        # --- BACKGROUND LOGIC ---
+        app_bg_style = "background-color: #5DA2D5;"
+        
+        # Control Opacity Here
+        bg_opacity = 0.4  
+
+        # Create a pseudo-element strictly for the image
+        bg_overlay_css = f"""
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background-image: url("data:image/png;base64,{bg_b64}");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             background-repeat: no-repeat;
+            opacity: {bg_opacity}; 
+            z-index: -1;
+        }}
         """
+
     else:
         # DARK MODE
         text_color = "#ffffff"
@@ -50,11 +66,9 @@ def render_css():
         
         card_bg = "rgba(255, 255, 255, 0.05)"
         
-        # Explicitly remove background image
-        app_bg_style = """
-            background-color: #0b1220;
-            background-image: none !important;
-        """
+        # Dark mode background (no image)
+        app_bg_style = "background-color: #0b1220;"
+        bg_overlay_css = "" # No image overlay
 
     # Inject CSS
     st.markdown(f"""
@@ -63,14 +77,17 @@ def render_css():
 
     [data-testid="stHeader"], footer {{ display: none; }}
 
+    /* Apply the Image Overlay here */
+    {bg_overlay_css}
+
     .stApp {{
         {app_bg_style} !important;
         color: {text_color} !important;
         font-family: 'Quicksand', sans-serif;
         transition: background 0.5s ease;
+        z-index: 1; 
     }}
 
-    /* Remove default padding/max-width to prevent centering/stretching issues */
     .block-container {{
         padding: 0 !important;
     }}
@@ -102,7 +119,7 @@ def render_css():
     }}
     .nav-item a:hover {{ transform: scale(1.05); color: #FFDB5B; }}
 
-    /* BUTTONS (Navbar/Global) */
+    /* BUTTONS */
     div[data-testid="stButton"] button {{
         background-color: {btn_bg};
         color: {btn_text};
@@ -111,8 +128,6 @@ def render_css():
         transition: transform 0.2s, background-color 0.2s;
     }}
     
-    /* --- HOVER FIX --- */
-    /* Explicitly force the background color on hover to prevent transparent/blue effect */
     div[data-testid="stButton"] button:hover {{
         transform: scale(1.02);
         background-color: {btn_hover} !important; 
@@ -120,7 +135,7 @@ def render_css():
         border: none !important;
     }}
     
-    /* CARDS (Shared Style) */
+    /* CARDS */
     .cards-grid {{
         display: flex;
         justify-content: space-between;
@@ -145,13 +160,14 @@ def render_top_buttons():
         "It always seems impossible until it's done."
     ]
     
-    # Using columns to position buttons to the right
     spacer, dark_col, motiv_col = st.columns([8, 1, 1.5])
 
     with dark_col:
-        btn_label = "🌙 Dark" if st.session_state["theme"] == "light" else "☀️ Light"
+        # NOTE: Label logic is reversed now. If theme is Dark, we show "Light" button
+        btn_label = "☀️ Light" if st.session_state["theme"] == "dark" else "🌙 Dark"
+        
         if st.button(btn_label, key="theme_toggle"):
-            st.session_state["theme"] = "dark" if st.session_state["theme"] == "light" else "light"
+            st.session_state["theme"] = "light" if st.session_state["theme"] == "dark" else "dark"
             st.rerun()
 
     with motiv_col:
